@@ -9,7 +9,6 @@ public class HeroEntity : MonoBehaviour {
     
     [FormerlySerializedAs("_movementsSettings")]
     [SerializeField] private HeroHorizontalMovementSettings _groundHorizontalMovementSettings;
-    [SerializeField] private HeroHorizontalMovementSettings _airHorizontalMovementSettings;
     private float _horizontalSpeed = 0f;
     private float _moveDirX = 0f;
 
@@ -33,6 +32,7 @@ public class HeroEntity : MonoBehaviour {
     [Header("Jump")]
     [SerializeField] private HeroJumpSettings _jumpSettings;
     [SerializeField] private HeroFallSettings _jumpFallSettings;
+    [SerializeField] private HeroHorizontalMovementSettings _jumpHorizontalMovementSettings;
 
     enum JumpState {
         NotJumping,
@@ -184,7 +184,7 @@ public class HeroEntity : MonoBehaviour {
     }
 
     private HeroHorizontalMovementSettings _GetCurrentHorizontalMovementSettings() {
-        return IsTouchingGround ? _groundHorizontalMovementSettings : _airHorizontalMovementSettings;
+        return IsTouchingGround ? _groundHorizontalMovementSettings : _jumpHorizontalMovementSettings;
     }
 
     private bool _AreOrientAndMovementOpposite() {
