@@ -13,8 +13,7 @@ public class CameraChangeProfileTrigger : MonoBehaviour {
     [Header("Trigger Box")]
     [SerializeField] private BoxCollider2D _boxCollider;
 
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmos() {
         if (_boxCollider == null) return;
         Color gizmosColor = Color.green;
         gizmosColor.a = 0.05f;

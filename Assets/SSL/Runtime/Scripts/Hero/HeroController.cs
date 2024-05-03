@@ -19,6 +19,10 @@ public class HeroController : MonoBehaviour {
     private void Start() {
         _CancelJumpBuffer();
     }
+    
+    private void _CancelJumpBuffer() {
+        _jumpBufferTimer = _jumpBufferDuration;
+    }
 
     private void Update() {
         _UpdateJumpBuffer();
@@ -90,17 +94,13 @@ public class HeroController : MonoBehaviour {
         _jumpBufferTimer = 0f;
     }
 
-    private bool IsJumpBufferActive() {
-        return _jumpBufferTimer < _jumpBufferDuration;
-    }
-
     private void _UpdateJumpBuffer() {
         if (!IsJumpBufferActive()) return;
         _jumpBufferTimer += Time.deltaTime;
     }
 
-    private void _CancelJumpBuffer() {
-        _jumpBufferTimer = _jumpBufferDuration;
+    private bool IsJumpBufferActive() {
+        return _jumpBufferTimer < _jumpBufferDuration;
     }
 
     private void _UpdateCoyoteTime() {

@@ -39,7 +39,6 @@ public class HeroEntity : MonoBehaviour {
         JumpImpulsion,
         Falling,
     }
-
     private JumpState _jumpState = JumpState.NotJumping;
     private float _jumpTimer = 0f;
 
