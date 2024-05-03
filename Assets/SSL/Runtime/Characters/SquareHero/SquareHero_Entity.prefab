@@ -822,7 +822,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3aa90e189c58491468a67afb3329e400, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -846,12 +846,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 7212136366118121974}
-  _movementsSettings:
+  _groundHorizontalMovementSettings:
     acceleration: 20
     deceleration: 15
     turnBackFriction: 25
     speedMax: 5
-  _horizontalSpeed: 5
   _dashSettings:
     duration: 10
     speedMax: 10
@@ -859,6 +858,19 @@ MonoBehaviour:
   _fallSettings:
     fallGravity: 20
     fallSpeedMax: 10
+  _groundDetector: {fileID: 830075097483568403}
+  _jumpSettings:
+    jumpSpeed: 8
+    jumpMinDuration: 0.1
+    jumpMaxDuration: 0.25
+  _jumpFallSettings:
+    fallGravity: 50
+    fallSpeedMax: 10
+  _jumpHorizontalMovementSettings:
+    acceleration: 20
+    deceleration: 1
+    turnBackFriction: 200
+    speedMax: 7
   _guiDebug: 0
 --- !u!114 &830075097483568403
 MonoBehaviour:
