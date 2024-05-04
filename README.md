@@ -2,40 +2,40 @@
 
 ## Projet complet
 Jour 1
-- [x] Déplacements Horizontaux
-- [x] Orientation Du Personnage
-- [x] Orientation Du Personnage V2
-- [x] Accélération Du Personnage 
-- [x] Décélération Du Personnage
-- [x] Faire Un Demi Tour
+- ✅ Déplacements Horizontaux
+- ✅ Orientation Du Personnage
+- ✅ Orientation Du Personnage V2
+- ✅ Accélération Du Personnage 
+- ✅ Décélération Du Personnage
+- ✅ Faire Un Demi Tour
 
 Jour 2
-- [x] Chute Et Gravité
-- [x] Détection De Sol
-- [x] Saut
-- [x] Hauteur De Saut Dynamique
-- [x] Air Control
-- [x] Jump Buffering
-- [x] Coyote Time
+- ✅ Chute Et Gravité
+- ✅ Détection De Sol
+- ✅ Saut
+- ✅ Hauteur De Saut Dynamique
+- ✅ Air Control
+- ✅ Jump Buffering
+- ✅ Coyote Time
 
 Jour 3
-- [x] Camera Profile
-- [x] Transition
-- [x] Suivre Un Objet
-- [x] Suivre Un Objet (Séparation des axes)
-- [x] Camera Damping
-- [x] Délimitation Camera
+- ✅ Camera Profile
+- ✅ Transition
+- ✅ Suivre Un Objet
+- ✅ Suivre Un Objet (Séparation des axes)
+- ✅ Camera Damping
+- ✅ Délimitation Camera
 
 ## Exercices
 Jour 1
-- [x] Faire Un Dash
+- ✅ Faire Un Dash
 
 Jour 2
 - [ ] Jump Air Control
-- [x] Dash Dans Les Airs
-- [x] Wall Reset Speed
+- ✅ Dash Dans Les Airs
+- ✅ Wall Reset Speed
 - [ ] Multi Saut
-- [x] Wall Slide / Jump
+- ✅ Wall Slide / Jump
 
 Jour 3
 - [ ] Follow Offset
