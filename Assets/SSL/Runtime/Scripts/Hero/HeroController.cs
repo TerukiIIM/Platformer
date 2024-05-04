@@ -57,6 +57,10 @@ public class HeroController : MonoBehaviour {
             }
         }
 
+        if (_GetInputDownJump()) {
+            _entity.WallJump();
+        }
+
         _entityWasTouchingGround = _entity.IsTouchingGround;
     }
 

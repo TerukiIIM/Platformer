@@ -40,6 +40,7 @@ public class HeroEntity : MonoBehaviour {
     public bool IsTouchingRightSide { get; private set; } = false;
 
     [Header("Jump")]
+    [SerializeField] public HeroAllJumpsSettings[] _allJumpsSettings;
     [SerializeField] private HeroJumpSettings _jumpSettings;
     [SerializeField] private HeroFallSettings _jumpFallSettings;
     [SerializeField] private HeroHorizontalMovementSettings _jumpHorizontalMovementSettings;
@@ -63,6 +64,7 @@ public class HeroEntity : MonoBehaviour {
     }
 
     private void Awake() {
+        Debug.Log(_allJumpsSettings[1].jumpSpeed);
         _cameraFollowable = GetComponent<CameraFollowable>();
         _cameraFollowable.FollowPositionX = _rigidbody.position.x;
         _cameraFollowable.FollowPositionY = _rigidbody.position.y;
@@ -261,6 +263,21 @@ public class HeroEntity : MonoBehaviour {
         _rigidbody.velocity = velocity;
         _isDash = true;
     }
+
+    public void WallJump() {
+        if (IsTouchingLeftSide || IsTouchingRightSide) {
+            Vector2 velocity = _rigidbody.velocity;
+            velocity.x = -(_orientX);
+            velocity.y = _jumpSettings.jumpSpeed * 50;
+            _rigidbody.velocity = velocity;
+            
+            _jumpState = JumpState.JumpImpulsion;
+            _jumpTimer = 0f;
+            _orientX *= -1f;
+        }
+    }
+
+
 
     private void OnGUI() {
         if (!_guiDebug) return;

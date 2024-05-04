@@ -8,3 +8,9 @@ using System;
     public float jumpMinDuration = 0.05f;
     public float jumpMaxDuration = 0.15f;
 }
+
+[Serializable] public struct HeroAllJumpsSettings {
+    public float jumpSpeed;
+    public float jumpMinDuration;
+    public float jumpMaxDuration;
+}
