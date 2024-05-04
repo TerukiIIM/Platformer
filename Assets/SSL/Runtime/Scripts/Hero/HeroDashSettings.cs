@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable] public class HeroDashSettings {
-    public float duration = 10f;
+    public float duration = 0.1f;
     public float speedMax = 10f;
 }
+    

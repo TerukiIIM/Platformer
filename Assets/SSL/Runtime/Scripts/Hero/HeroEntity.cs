@@ -14,6 +14,8 @@ public class HeroEntity : MonoBehaviour {
 
     [Header("Dash")]
     [SerializeField] private HeroDashSettings _dashSettings;
+    private float _dashTimer = 0f;
+    private bool _isDash = false;
 
     [Header("Orientation")]
     [SerializeField] private Transform _orientVisualRoot;
@@ -28,6 +30,14 @@ public class HeroEntity : MonoBehaviour {
     [Header("Ground")]
     [SerializeField] private GroundDetector _groundDetector;
     public bool IsTouchingGround { get; private set; } = false;
+
+    [Header("Left Side")]
+    [SerializeField] private LeftSideDetector _leftSideDetector;
+    public bool IsTouchingLeftSide { get; private set; } = false;
+
+    [Header("Right Side")]
+    [SerializeField] private RightSideDetector _rightSideDetector;
+    public bool IsTouchingRightSide { get; private set; } = false;
 
     [Header("Jump")]
     [SerializeField] private HeroJumpSettings _jumpSettings;
@@ -57,12 +67,37 @@ public class HeroEntity : MonoBehaviour {
         _cameraFollowable.FollowPositionX = _rigidbody.position.x;
         _cameraFollowable.FollowPositionY = _rigidbody.position.y;
     }
+    
+    private void Update() {
+        _UpdateOrientVisual();
+    }
 
     private void FixedUpdate() {
         _ApplyGroundDetection();
+        _ApplyLeftSideDetection();
+        _ApplyRightSideDetection();
         _UpdateCameraFollowPosition();
 
         HeroHorizontalMovementSettings HorizontalMovementSettings = _GetCurrentHorizontalMovementSettings();
+        
+        if (_isDash) {
+            if (_dashTimer < _dashSettings.duration) {
+                if (IsTouchingLeftSide || IsTouchingRightSide) {
+                    _horizontalSpeed = 0f;
+                }
+                _Dash();
+                _dashTimer += Time.fixedDeltaTime;
+                return;
+            } else {
+                _dashTimer = 0f;
+                _isDash = false;
+                if (_horizontalSpeed != 0f) {
+                    _horizontalSpeed = _groundHorizontalMovementSettings.speedMax;
+                }
+                _jumpState = JumpState.Falling;
+            }
+        }
+
         if (_AreOrientAndMovementOpposite()) {
             _TurnBack(HorizontalMovementSettings);
         } else {
@@ -156,12 +191,16 @@ public class HeroEntity : MonoBehaviour {
         IsTouchingGround = _groundDetector.DetectGroundNearBy();
     }
 
+    private void _ApplyLeftSideDetection() {
+        IsTouchingLeftSide = _leftSideDetector.DetectLeftSideNearBy();
+    }
+
+    private void _ApplyRightSideDetection() {
+        IsTouchingRightSide = _rightSideDetector.DetectRightSideNearBy();
+    }
+
     private void _ResetVerticalSpeed() {
         _verticalSpeed = 0f;
-    }
-    
-    private void Update() {
-        _UpdateOrientVisual();
     }
 
     private void _UpdateOrientVisual() {
@@ -208,17 +247,19 @@ public class HeroEntity : MonoBehaviour {
         }
     }
 
-    public void SetDash(bool isDash) {
-        if (isDash) {
-            _horizontalSpeed = _dashSettings.speedMax;
-        }
-    }
-
     private void _UpdateCameraFollowPosition() {
         _cameraFollowable.FollowPositionX = _rigidbody.position.x;
         if (IsTouchingGround && !IsJumping) {
             _cameraFollowable.FollowPositionY = _rigidbody.position.y;
         }
+    }
+
+    public void _Dash() {
+        Vector2 velocity = _rigidbody.velocity;
+        velocity.x = _dashSettings.speedMax * _orientX;
+        velocity.y = 0f;
+        _rigidbody.velocity = velocity;
+        _isDash = true;
     }
 
     private void OnGUI() {
@@ -232,6 +273,11 @@ public class HeroEntity : MonoBehaviour {
             GUILayout.Label("OnGround");
         } else {
             GUILayout.Label("OnAir");
+        }
+        if (IsTouchingLeftSide || IsTouchingRightSide) {
+            GUILayout.Label("TouchWall");
+        } else {
+            GUILayout.Label("TouchAir");
         }
         GUILayout.Label($"JumpState = {_jumpState}");
         GUILayout.Label($"Horizontal Speed = {_horizontalSpeed}");

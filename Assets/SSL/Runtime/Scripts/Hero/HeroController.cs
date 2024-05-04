@@ -27,6 +27,8 @@ public class HeroController : MonoBehaviour {
     private void Update() {
         _UpdateJumpBuffer();
 
+        _GetInputDownDash();
+        
         _entity.SetMoveDirX(GetInputMoveX());
 
         if (_EntityHasExitGround()) {
@@ -44,7 +46,7 @@ public class HeroController : MonoBehaviour {
         }
 
         if (IsJumpBufferActive()) {
-            if ((_entity.IsTouchingGround || _IsCoyoteTimeActive()) && ! _entity.IsJumping) {
+            if ((_entity.IsTouchingGround || _IsCoyoteTimeActive()) && !_entity.IsJumping) {
                 _entity.JumpStart();
             }
         }
@@ -56,17 +58,6 @@ public class HeroController : MonoBehaviour {
         }
 
         _entityWasTouchingGround = _entity.IsTouchingGround;
-        _entity.SetDash(GetInputDashX());
-    }
-
-    private void OnGUI() {
-        if (!_guiDebug) return;
-
-        GUILayout.BeginVertical(GUI.skin.box);
-        GUILayout.Label(gameObject.name);
-        GUILayout.Label($"Jump Buffer Timer = {_jumpBufferTimer}");
-        GUILayout.Label($"CoyoteTime Countdown = {_coyoteTimeCountdown}");
-        GUILayout.EndVertical();
     }
 
     private float GetInputMoveX() {
@@ -120,12 +111,19 @@ public class HeroController : MonoBehaviour {
         return _entityWasTouchingGround && !_entity.IsTouchingGround;
     }
 
-    private bool GetInputDashX() {
-        bool isDash = false;
+    private void _GetInputDownDash() {
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
-            isDash = true;
+            _entity._Dash();
         }
+    }
 
-        return isDash;
+    private void OnGUI() {
+        if (!_guiDebug) return;
+
+        GUILayout.BeginVertical(GUI.skin.box);
+        GUILayout.Label(gameObject.name);
+        GUILayout.Label($"Jump Buffer Timer = {_jumpBufferTimer}");
+        GUILayout.Label($"CoyoteTime Countdown = {_coyoteTimeCountdown}");
+        GUILayout.EndVertical();
     }
 }
