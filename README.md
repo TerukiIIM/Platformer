@@ -4,7 +4,6 @@
 Jour 1
 - ✅ Déplacements Horizontaux
 - ✅ Orientation Du Personnage
-- ✅ Orientation Du Personnage V2
 - ✅ Accélération Du Personnage 
 - ✅ Décélération Du Personnage
 - ✅ Faire Un Demi Tour
@@ -35,7 +34,7 @@ Jour 2
 - ✅ Dash Dans Les Airs
 - ✅ Wall Reset Speed
 - [ ] Multi Saut
-- ✅ Wall Slide / Jump
+- 🟨 Wall Slide / Jump
 
 Jour 3
 - [ ] Follow Offset
