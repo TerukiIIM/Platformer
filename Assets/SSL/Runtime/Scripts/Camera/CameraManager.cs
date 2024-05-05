@@ -99,7 +99,11 @@ public class CameraManager : MonoBehaviour {
         if (_currentCameraProfile.ProfileType == CameraProfileType.FollowTarget) {
             if (_currentCameraProfile.TargetToFollow != null) {
                 CameraFollowable targetToFollow = _currentCameraProfile.TargetToFollow;
-                _profileLastFollowDestination.x = targetToFollow.FollowPositionX;
+                
+                float _offsetX = _currentCameraProfile.FollowOffsetX;
+                _offsetX *= targetToFollow.Orientation;
+
+                _profileLastFollowDestination.x = targetToFollow.FollowPositionX + _offsetX;
                 _profileLastFollowDestination.y = targetToFollow.FollowPositionY;
                 return _profileLastFollowDestination;
             }

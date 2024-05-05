@@ -984,6 +984,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _profileType: 0
   _targetToFollow: {fileID: 0}
+  _followOffsetX: 0
+  _followOffsetDamping: 0
+  _autoScrollHorizontal: 8
+  _autoScrollVertical: 8
   _useDampingHorizontally: 0
   _horizontalDampingFactor: 5
   _useDampingVertically: 0
@@ -1740,6 +1744,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _profileType: 1
   _targetToFollow: {fileID: 732721623840024185}
+  _followOffsetX: 8
+  _followOffsetDamping: 1.5
+  _autoScrollHorizontal: 1
+  _autoScrollVertical: 0
   _useDampingHorizontally: 1
   _horizontalDampingFactor: 7
   _useDampingVertically: 1

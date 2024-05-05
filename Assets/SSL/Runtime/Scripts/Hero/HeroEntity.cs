@@ -64,7 +64,6 @@ public class HeroEntity : MonoBehaviour {
     }
 
     private void Awake() {
-        Debug.Log(_allJumpsSettings[1].jumpSpeed);
         _cameraFollowable = GetComponent<CameraFollowable>();
         _cameraFollowable.FollowPositionX = _rigidbody.position.x;
         _cameraFollowable.FollowPositionY = _rigidbody.position.y;
@@ -72,6 +71,7 @@ public class HeroEntity : MonoBehaviour {
     
     private void Update() {
         _UpdateOrientVisual();
+        _cameraFollowable.Orientation = _orientX;
     }
 
     private void FixedUpdate() {
