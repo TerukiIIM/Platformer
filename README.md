@@ -37,5 +37,5 @@ Jour 2
 - 🟨 Wall Slide / Jump
 
 Jour 3
-- [ ] Follow Offset
+- 🟨 Follow Offset
 - [ ] AutoScroll
