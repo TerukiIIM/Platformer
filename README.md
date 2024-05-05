@@ -30,12 +30,12 @@ Jour 1
 - ✅ Faire Un Dash
 
 Jour 2
-- [ ] Jump Air Control
+- ✅ Jump Air Control
 - ✅ Dash Dans Les Airs
 - ✅ Wall Reset Speed
 - [ ] Multi Saut
 - 🟨 Wall Slide / Jump
 
 Jour 3
-- [ ] Follow Offset
+- 🟨 Follow Offset
 - [ ] AutoScroll
